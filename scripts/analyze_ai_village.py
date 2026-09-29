@@ -75,6 +75,7 @@ if not deepseek_id or not terra_id:
 terra_constraints = []
 terra_repeat_complaints = []
 deepseek_acks = []
+deepseek_terra_mentions = []
 chat_hits = []
 
 for row in stream_jsonl_gz("chat_messages.jsonl.gz"):
@@ -108,12 +109,16 @@ for row in stream_jsonl_gz("chat_messages.jsonl.gz"):
             if f["again"] or "latest" in low or "repeat" in low:
                 terra_repeat_complaints.append(rec)
 
+        if aid == deepseek_id and f["terra"]:
+            deepseek_terra_mentions.append(rec)
+
         if aid == deepseek_id and (f["exclude"] or f["privacy"] or f["aggregate"]):
             deepseek_acks.append(rec)
 
 terra_constraints.sort(key=lambda x: x["created_at"])
 terra_repeat_complaints.sort(key=lambda x: x["created_at"])
 deepseek_acks.sort(key=lambda x: x["created_at"])
+deepseek_terra_mentions.sort(key=lambda x: x["created_at"])
 chat_hits.sort(key=lambda x: x["created_at"])
 
 # EVENTS
@@ -221,6 +226,27 @@ for c in terra_constraints:
         and (not s["query_mentions_terra"]) and s["answer_mentions_terra"]
     ]
 
+    tool_to_chat_propagations = []
+    for se in later_answer_only:
+        sedt = dt(se["created_at"])
+        next_ds = next((
+            m for m in deepseek_terra_mentions
+            if dt(m["created_at"]) > sedt
+            and dt(m["created_at"]) <= sedt + timedelta(minutes=30)
+        ), None)
+        next_terra = next((
+            t for t in terra_repeat_complaints
+            if dt(t["created_at"]) > sedt
+            and dt(t["created_at"]) <= sedt + timedelta(minutes=60)
+        ), None)
+        if next_ds:
+            tool_to_chat_propagations.append({
+                "search_event": se,
+                "next_deepseek_chat_mentioning_terra": next_ds,
+                "next_terra_repeat_complaint": next_terra,
+                "propagation_with_complaint": bool(next_terra and dt(next_terra["created_at"]) > dt(next_ds["created_at"])),
+            })
+
     episodes.append({
         "constraint": c,
         "ack": ack,
@@ -228,15 +254,18 @@ for c in terra_constraints:
         "later_repeat_complaint": complaint,
         "later_agent_queries_explicitly_mentioning_terra": later_queries,
         "later_tool_answers_mentioning_terra_without_query_mention": later_answer_only,
+        "tool_answer_to_deepseek_chat_propagations": tool_to_chat_propagations,
         "strong_remembered_rule_failure_candidate": bool(mem and complaint),
         "agent_initiated_search_breach_candidate": bool(mem and later_queries),
         "tool_answer_leak_candidate": bool(mem and later_answer_only),
+        "tool_answer_propagation_candidate": bool(mem and any(x["propagation_with_complaint"] for x in tool_to_chat_propagations)),
     })
 
 # Deduplicate identical constraint/ack/memory patterns only by message id
 strong = [e for e in episodes if e["strong_remembered_rule_failure_candidate"]]
 query_breach = [e for e in episodes if e["agent_initiated_search_breach_candidate"]]
 tool_leak = [e for e in episodes if e["tool_answer_leak_candidate"]]
+tool_propagation = [e for e in episodes if e["tool_answer_propagation_candidate"]]
 
 diagnostic = {
     "dataset": REPO,
@@ -249,6 +278,7 @@ diagnostic = {
         "terra_constraint_candidates": len(terra_constraints),
         "terra_repeat_complaints": len(terra_repeat_complaints),
         "deepseek_ack_candidates": len(deepseek_acks),
+        "deepseek_chats_mentioning_terra": len(deepseek_terra_mentions),
         "deepseek_privacy_related_memory_hits": len(memory_hits),
         "deepseek_constraint_signature_memories": len(constraint_memories),
         "deepseek_search_history_events": len(search_events),
@@ -260,9 +290,11 @@ diagnostic = {
         "remembered_rule_then_repeat_complaint_episode_count": len(strong),
         "remembered_rule_then_agent_query_mentions_terra_episode_count": len(query_breach),
         "remembered_rule_then_tool_answer_only_mentions_terra_episode_count": len(tool_leak),
+        "tool_answer_then_deepseek_chat_then_terra_complaint_episode_count": len(tool_propagation),
         "strongest_remembered_rule_failure": strong[0] if strong else None,
         "strongest_agent_query_breach": query_breach[0] if query_breach else None,
         "strongest_tool_answer_leak": tool_leak[0] if tool_leak else None,
+        "strongest_tool_answer_propagation": tool_propagation[0] if tool_propagation else None,
     },
     "broad_scan": {
         "agents_with_most_constraint_language_in_memories": broad_constraint_counts.most_common(15),
@@ -290,6 +322,7 @@ lines = [
     f"- Terra constraint candidates: {len(terra_constraints)}",
     f"- Terra repeat-complaint candidates: {len(terra_repeat_complaints)}",
     f"- DeepSeek acknowledgement candidates: {len(deepseek_acks)}",
+    f"- DeepSeek chat messages mentioning Terra: {len(deepseek_terra_mentions)}",
     f"- DeepSeek constraint-signature memories: {len(constraint_memories)}",
     f"- DeepSeek SEARCH_HISTORY events: {len(search_events)}",
     f"- Queries explicitly naming Terra: {diagnostic['counts']['deepseek_queries_explicitly_mentioning_terra']}",
@@ -300,6 +333,7 @@ lines = [
     f"- Remembered rule followed by a later Terra repeat complaint: **{summary['remembered_rule_then_repeat_complaint_episode_count']}** candidate episode(s)",
     f"- Remembered rule followed by DeepSeek explicitly naming Terra in a later SEARCH_HISTORY query: **{summary['remembered_rule_then_agent_query_mentions_terra_episode_count']}** candidate episode(s)",
     f"- Remembered rule followed only by a tool answer naming Terra: **{summary['remembered_rule_then_tool_answer_only_mentions_terra_episode_count']}** candidate episode(s)",
+    f"- Tool answer names Terra, then DeepSeek chat names Terra, then Terra complains again: **{summary['tool_answer_then_deepseek_chat_then_terra_complaint_episode_count']}** candidate episode(s)",
     "",
     "These are candidate sequences, not final behavioral claims. Exact messages and scaffold timing still need semantic audit.",
 ]
@@ -317,4 +351,5 @@ print(json.dumps({
     "remembered_rule_repeat_complaint_candidates": len(strong),
     "remembered_rule_agent_query_breach_candidates": len(query_breach),
     "remembered_rule_tool_leak_candidates": len(tool_leak),
+    "tool_answer_propagation_candidates": len(tool_propagation),
 }, indent=2))
