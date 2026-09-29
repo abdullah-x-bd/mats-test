@@ -1,0 +1,33 @@
+name: Audit memory proximity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_memory_proximity.py"
+      - ".github/workflows/audit-memory-proximity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check requests
+      - name: Audit target memories
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python scripts/audit_memory_proximity.py
+      - name: Commit derived audit
+        run: |
+          git config user.name "mats-test-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/memory_proximity_audit.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Add memory proximity audit"; git push; fi
