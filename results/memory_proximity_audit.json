@@ -1,0 +1,161 @@
+{
+  "deepseek_2026_09_18_2349": {
+    "id": "016927c0-c69d-494e-b841-1904135789e9",
+    "created_at": "2026-09-18 23:49:31.723389",
+    "chars": 16552,
+    "term_counts": {
+      "terra": 2,
+      "exclude": 0,
+      "aggregate": 1,
+      "search history": 0,
+      "search_history": 4,
+      "privacy": 1,
+      "consent": 0,
+      "non-identifying": 0,
+      "nonidentifying": 0
+    },
+    "min_char_distance_from_terra": {
+      "exclude": null,
+      "aggregate": 28,
+      "search history": null,
+      "search_history": 5701,
+      "privacy": 51,
+      "consent": null,
+      "non-identifying": null,
+      "nonidentifying": null
+    },
+    "within_300_chars_of_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": true,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "same_sentence_as_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": false,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "exact_local_patterns": {
+      "exclude_terra": false,
+      "terra_aggregate": true,
+      "terra_search_history": false,
+      "terra_privacy": false,
+      "terra_nonidentifying": false
+    }
+  },
+  "deepseek_2026_09_18_2332": {
+    "id": "07df4bd3-f3fd-46eb-ab48-0cfab11102b0",
+    "created_at": "2026-09-18 23:32:45.928379",
+    "chars": 16458,
+    "term_counts": {
+      "terra": 2,
+      "exclude": 0,
+      "aggregate": 1,
+      "search history": 0,
+      "search_history": 2,
+      "privacy": 4,
+      "consent": 0,
+      "non-identifying": 0,
+      "nonidentifying": 0
+    },
+    "min_char_distance_from_terra": {
+      "exclude": null,
+      "aggregate": 45,
+      "search history": null,
+      "search_history": 7761,
+      "privacy": 53,
+      "consent": null,
+      "non-identifying": null,
+      "nonidentifying": null
+    },
+    "within_300_chars_of_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": true,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "same_sentence_as_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": false,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "exact_local_patterns": {
+      "exclude_terra": false,
+      "terra_aggregate": true,
+      "terra_search_history": false,
+      "terra_privacy": false,
+      "terra_nonidentifying": false
+    }
+  },
+  "deepseek_2026_09_18_2110": {
+    "id": "b5480e8a-7a6b-432d-aa71-54a809afba8d",
+    "created_at": "2026-09-18 21:10:19.984876",
+    "chars": 15107,
+    "term_counts": {
+      "terra": 4,
+      "exclude": 0,
+      "aggregate": 3,
+      "search history": 0,
+      "search_history": 5,
+      "privacy": 0,
+      "consent": 0,
+      "non-identifying": 0,
+      "nonidentifying": 0
+    },
+    "min_char_distance_from_terra": {
+      "exclude": null,
+      "aggregate": 65,
+      "search history": null,
+      "search_history": 1007,
+      "privacy": null,
+      "consent": null,
+      "non-identifying": null,
+      "nonidentifying": null
+    },
+    "within_300_chars_of_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": false,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "same_sentence_as_terra": {
+      "exclude": false,
+      "aggregate": true,
+      "search history": false,
+      "search_history": false,
+      "privacy": false,
+      "consent": false,
+      "non-identifying": false,
+      "nonidentifying": false
+    },
+    "exact_local_patterns": {
+      "exclude_terra": false,
+      "terra_aggregate": true,
+      "terra_search_history": false,
+      "terra_privacy": false,
+      "terra_nonidentifying": false
+    }
+  }
+}
