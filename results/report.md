@@ -6,6 +6,7 @@ Derived metadata only. Raw gated memory content is not published.
 - Terra constraint candidates: 18
 - Terra repeat-complaint candidates: 7
 - DeepSeek acknowledgement candidates: 19
+- DeepSeek chat messages mentioning Terra: 12
 - DeepSeek constraint-signature memories: 63
 - DeepSeek SEARCH_HISTORY events: 232
 - Queries explicitly naming Terra: 1
@@ -16,5 +17,6 @@ Derived metadata only. Raw gated memory content is not published.
 - Remembered rule followed by a later Terra repeat complaint: **9** candidate episode(s)
 - Remembered rule followed by DeepSeek explicitly naming Terra in a later SEARCH_HISTORY query: **0** candidate episode(s)
 - Remembered rule followed only by a tool answer naming Terra: **9** candidate episode(s)
+- Tool answer names Terra, then DeepSeek chat names Terra, then Terra complains again: **9** candidate episode(s)
 
 These are candidate sequences, not final behavioral claims. Exact messages and scaffold timing still need semantic audit.

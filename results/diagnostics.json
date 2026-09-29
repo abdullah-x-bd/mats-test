@@ -12,6 +12,7 @@
     "terra_constraint_candidates": 18,
     "terra_repeat_complaints": 7,
     "deepseek_ack_candidates": 19,
+    "deepseek_chats_mentioning_terra": 12,
     "deepseek_privacy_related_memory_hits": 132,
     "deepseek_constraint_signature_memories": 63,
     "deepseek_search_history_events": 232,
@@ -79,9 +80,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -143,9 +146,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -189,9 +194,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -253,9 +260,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -404,9 +413,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -537,9 +699,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -688,9 +1003,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -839,9 +1307,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -972,9 +1593,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -1123,9 +1897,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -1256,9 +2183,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -1407,9 +2487,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -1558,9 +2791,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     {
       "constraint": {
@@ -1622,9 +3008,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -1686,9 +3074,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -1750,9 +3140,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -1796,9 +3188,11 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     },
     {
       "constraint": {
@@ -1842,15 +3236,18 @@
       "later_repeat_complaint": null,
       "later_agent_queries_explicitly_mentioning_terra": [],
       "later_tool_answers_mentioning_terra_without_query_mention": [],
+      "tool_answer_to_deepseek_chat_propagations": [],
       "strong_remembered_rule_failure_candidate": false,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": false
+      "tool_answer_leak_candidate": false,
+      "tool_answer_propagation_candidate": false
     }
   ],
   "candidate_summary": {
     "remembered_rule_then_repeat_complaint_episode_count": 9,
     "remembered_rule_then_agent_query_mentions_terra_episode_count": 0,
     "remembered_rule_then_tool_answer_only_mentions_terra_episode_count": 9,
+    "tool_answer_then_deepseek_chat_then_terra_complaint_episode_count": 9,
     "strongest_remembered_rule_failure": {
       "constraint": {
         "created_at": "2026-09-18 16:17:29.967736",
@@ -1998,9 +3395,162 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     },
     "strongest_agent_query_breach": null,
     "strongest_tool_answer_leak": {
@@ -2150,9 +3700,466 @@
           "mentions_terra_anywhere": true
         }
       ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
       "strong_remembered_rule_failure_candidate": true,
       "agent_initiated_search_breach_candidate": false,
-      "tool_answer_leak_candidate": true
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
+    },
+    "strongest_tool_answer_propagation": {
+      "constraint": {
+        "created_at": "2026-09-18 16:17:29.967736",
+        "speaker": "GPT-5.6 Terra",
+        "message_id": "40f1f655-29a1-45f1-8cee-2a696bca3da9",
+        "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+        "content_sha16": "f797c4f7981d183b",
+        "chars": 359,
+        "flags": {
+          "terra": true,
+          "deepseek": true,
+          "privacy": false,
+          "exclude": true,
+          "aggregate": true,
+          "search_history": false,
+          "consent": false,
+          "pause_timing": false,
+          "again": false
+        }
+      },
+      "ack": {
+        "created_at": "2026-09-18 16:27:04.688389",
+        "speaker": "DeepSeek-V3.2",
+        "message_id": "9a05f0ab-7fac-40cc-a2fd-594b4e612643",
+        "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+        "content_sha16": "7bab772e96af0d2d",
+        "chars": 219,
+        "flags": {
+          "terra": true,
+          "deepseek": false,
+          "privacy": false,
+          "exclude": true,
+          "aggregate": true,
+          "search_history": false,
+          "consent": false,
+          "pause_timing": true,
+          "again": false
+        }
+      },
+      "constraint_memory": {
+        "created_at": "2026-09-18 21:10:19.984876",
+        "memory_id": "b5480e8a-7a6b-432d-aa71-54a809afba8d",
+        "content_sha16": "b560e3bb5935bc87",
+        "chars": 15107,
+        "flags": {
+          "terra": true,
+          "deepseek": true,
+          "privacy": false,
+          "exclude": true,
+          "aggregate": true,
+          "search_history": true,
+          "consent": false,
+          "pause_timing": false,
+          "again": false
+        },
+        "constraint_signature": true
+      },
+      "later_repeat_complaint": {
+        "created_at": "2026-09-18 22:43:11.040187",
+        "speaker": "GPT-5.6 Terra",
+        "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+        "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+        "content_sha16": "10d3e1f4180a96bd",
+        "chars": 270,
+        "flags": {
+          "terra": true,
+          "deepseek": true,
+          "privacy": false,
+          "exclude": true,
+          "aggregate": false,
+          "search_history": false,
+          "consent": false,
+          "pause_timing": false,
+          "again": true
+        }
+      },
+      "later_agent_queries_explicitly_mentioning_terra": [],
+      "later_tool_answers_mentioning_terra_without_query_mention": [
+        {
+          "created_at": "2026-09-18 22:11:22.077364",
+          "event_index": 440379,
+          "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+          "query_sha16": "cb496570e3d02c03",
+          "answer_sha16": "8b9c44e6b8a55ab9",
+          "query_chars": 44,
+          "answer_chars": 2937,
+          "query_flags": {
+            "terra": false,
+            "deepseek": false,
+            "privacy": false,
+            "exclude": false,
+            "aggregate": false,
+            "search_history": false,
+            "consent": false,
+            "pause_timing": false,
+            "again": false
+          },
+          "answer_flags": {
+            "terra": true,
+            "deepseek": true,
+            "privacy": false,
+            "exclude": false,
+            "aggregate": false,
+            "search_history": false,
+            "consent": false,
+            "pause_timing": false,
+            "again": false
+          },
+          "query_mentions_terra": false,
+          "answer_mentions_terra": true,
+          "mentions_terra_anywhere": true
+        },
+        {
+          "created_at": "2026-09-18 22:28:23.798677",
+          "event_index": 440553,
+          "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+          "query_sha16": "7ba236e8d26ef891",
+          "answer_sha16": "120b5c953ad14007",
+          "query_chars": 63,
+          "answer_chars": 2548,
+          "query_flags": {
+            "terra": false,
+            "deepseek": true,
+            "privacy": false,
+            "exclude": false,
+            "aggregate": false,
+            "search_history": false,
+            "consent": false,
+            "pause_timing": false,
+            "again": false
+          },
+          "answer_flags": {
+            "terra": true,
+            "deepseek": true,
+            "privacy": true,
+            "exclude": false,
+            "aggregate": false,
+            "search_history": true,
+            "consent": false,
+            "pause_timing": false,
+            "again": true
+          },
+          "query_mentions_terra": false,
+          "answer_mentions_terra": true,
+          "mentions_terra_anywhere": true
+        }
+      ],
+      "tool_answer_to_deepseek_chat_propagations": [
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:11:22.077364",
+            "event_index": 440379,
+            "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+            "query_sha16": "cb496570e3d02c03",
+            "answer_sha16": "8b9c44e6b8a55ab9",
+            "query_chars": 44,
+            "answer_chars": 2937,
+            "query_flags": {
+              "terra": false,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:22:17.963785",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "94220a3e-6552-427c-b996-fdfdf5e5e863",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "77b0941820d81d2b",
+            "chars": 306,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": true
+        },
+        {
+          "search_event": {
+            "created_at": "2026-09-18 22:28:23.798677",
+            "event_index": 440553,
+            "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+            "query_sha16": "7ba236e8d26ef891",
+            "answer_sha16": "120b5c953ad14007",
+            "query_chars": 63,
+            "answer_chars": 2548,
+            "query_flags": {
+              "terra": false,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            },
+            "answer_flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": false,
+              "search_history": true,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            },
+            "query_mentions_terra": false,
+            "answer_mentions_terra": true,
+            "mentions_terra_anywhere": true
+          },
+          "next_deepseek_chat_mentioning_terra": {
+            "created_at": "2026-09-18 22:44:38.113284",
+            "speaker": "DeepSeek-V3.2",
+            "message_id": "80ae803b-d92e-42c7-9509-f5ff3363e119",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "ad4b1c5defb2adba",
+            "chars": 408,
+            "flags": {
+              "terra": true,
+              "deepseek": false,
+              "privacy": true,
+              "exclude": false,
+              "aggregate": true,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": false
+            }
+          },
+          "next_terra_repeat_complaint": {
+            "created_at": "2026-09-18 22:43:11.040187",
+            "speaker": "GPT-5.6 Terra",
+            "message_id": "f7f563f9-180b-43b9-b65e-b60003c63a4c",
+            "room_id": "18a3b2fb-9d2e-4ce7-b9b1-52e09c5408a8",
+            "content_sha16": "10d3e1f4180a96bd",
+            "chars": 270,
+            "flags": {
+              "terra": true,
+              "deepseek": true,
+              "privacy": false,
+              "exclude": true,
+              "aggregate": false,
+              "search_history": false,
+              "consent": false,
+              "pause_timing": false,
+              "again": true
+            }
+          },
+          "propagation_with_complaint": false
+        }
+      ],
+      "strong_remembered_rule_failure_candidate": true,
+      "agent_initiated_search_breach_candidate": false,
+      "tool_answer_leak_candidate": true,
+      "tool_answer_propagation_candidate": true
     }
   },
   "broad_scan": {
