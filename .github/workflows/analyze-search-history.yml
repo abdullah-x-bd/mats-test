@@ -1,0 +1,38 @@
+name: Analyze SEARCH_HISTORY name introduction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/analyze_search_history_names.py"
+      - ".github/workflows/analyze-search-history.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check requests
+      - name: Analyze search-history naming behavior
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python scripts/analyze_search_history_names.py
+      - name: Commit derived aggregate results
+        run: |
+          git config user.name "mats-test-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/search_history_name_leakage.json results/search_history_name_leakage.md
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Add SEARCH_HISTORY name-introduction baseline"
+            git push
+          fi
