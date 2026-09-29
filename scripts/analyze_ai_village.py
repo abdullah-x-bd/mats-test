@@ -4,9 +4,8 @@ import hashlib
 import io
 import json
 import os
-import re
-from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from collections import Counter
+from datetime import datetime, timedelta
 
 import requests
 
@@ -15,7 +14,7 @@ BASE = f"https://huggingface.co/datasets/{REPO}/resolve/main"
 TOKEN = os.environ["HF_TOKEN"]
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
-START = "2026-09-15 00:00:00"
+START = "2026-09-14 00:00:00"
 END = "2026-09-24 00:00:00"
 
 PRIVACY_TERMS = (
@@ -27,6 +26,9 @@ CONSTRAINT_TERMS = (
     "do not", "don't", "must not", "never", "exclude", "avoid", "constraint",
     "privacy", "consent", "permission", "boundary", "prohibited", "forbidden"
 )
+
+def dt(ts):
+    return datetime.fromisoformat(ts)
 
 def stream_jsonl_gz(filename):
     url = f"{BASE}/{filename}"
@@ -56,9 +58,9 @@ def flags(text):
         "search_history": any(k in t for k in ("search history", "search_history", "search parameters")),
         "consent": "consent" in t,
         "pause_timing": "pause timing" in t,
+        "again": "again" in t,
     }
 
-# 1. Resolve agent IDs.
 agents = {}
 for row in stream_jsonl_gz("agents.jsonl.gz"):
     agents[row["id"]] = row.get("name") or row["id"]
@@ -66,14 +68,14 @@ for row in stream_jsonl_gz("agents.jsonl.gz"):
 name_to_id = {v: k for k, v in agents.items()}
 deepseek_id = name_to_id.get("DeepSeek-V3.2")
 terra_id = name_to_id.get("GPT-5.6 Terra")
-
 if not deepseek_id or not terra_id:
     raise RuntimeError(f"Could not resolve target IDs. DeepSeek={deepseek_id}, Terra={terra_id}")
 
-# 2. Target chat sequence, metadata only.
+# CHAT
+terra_constraints = []
+terra_repeat_complaints = []
+deepseek_acks = []
 chat_hits = []
-first_terra_constraint = None
-deepseek_ack_candidates = []
 
 for row in stream_jsonl_gz("chat_messages.jsonl.gz"):
     ts = row.get("created_at")
@@ -90,21 +92,33 @@ for row in stream_jsonl_gz("chat_messages.jsonl.gz"):
             "created_at": ts,
             "speaker": agents.get(aid, aid),
             "message_id": row.get("id"),
+            "room_id": row.get("room_id"),
             "content_sha16": sha(content),
             "chars": len(content),
             "flags": f,
         }
         chat_hits.append(rec)
-        if aid == terra_id and any(term in low for term in ("privacy", "exclude", "do not include", "don't include", "do not identify", "don't identify")):
-            if first_terra_constraint is None:
-                first_terra_constraint = rec
-        if aid == deepseek_id and (f["exclude"] or f["privacy"] or f["aggregate"]):
-            deepseek_ack_candidates.append(rec)
 
-# 3. Search-history behavior in events.
+        if aid == terra_id and (
+            f["exclude"] or f["privacy"] or
+            "do not identify" in low or "don't identify" in low or
+            "do not include" in low or "don't include" in low
+        ):
+            terra_constraints.append(rec)
+            if f["again"] or "latest" in low or "repeat" in low:
+                terra_repeat_complaints.append(rec)
+
+        if aid == deepseek_id and (f["exclude"] or f["privacy"] or f["aggregate"]):
+            deepseek_acks.append(rec)
+
+terra_constraints.sort(key=lambda x: x["created_at"])
+terra_repeat_complaints.sort(key=lambda x: x["created_at"])
+deepseek_acks.sort(key=lambda x: x["created_at"])
+chat_hits.sort(key=lambda x: x["created_at"])
+
+# EVENTS
 search_events = []
 all_recent_action_counts = Counter()
-
 for row in stream_jsonl_gz("events.jsonl.gz"):
     ts = row.get("created_at")
     if not within(ts):
@@ -127,35 +141,30 @@ for row in stream_jsonl_gz("events.jsonl.gz"):
         "answer_chars": len(answer),
         "query_flags": qf,
         "answer_flags": af,
+        "query_mentions_terra": qf["terra"],
+        "answer_mentions_terra": af["terra"],
         "mentions_terra_anywhere": qf["terra"] or af["terra"],
-        "privacy_related_anywhere": any(qf[k] or af[k] for k in ("privacy","exclude","aggregate","consent","pause_timing")),
     })
+search_events.sort(key=lambda x: x["created_at"])
 
-# 4. Stream full memory file once. Retain no raw memory content.
+# MEMORIES
 memory_hits = []
 broad_constraint_counts = Counter()
-recent_memory_counts = Counter()
-first_memory_constraint_after_chat = None
-
-constraint_time = first_terra_constraint["created_at"] if first_terra_constraint else None
-
 for row in stream_jsonl_gz("agent_memories.jsonl.gz"):
     content = row.get("content") or ""
     low = content.lower()
     aid = row.get("agent_id")
     ts = row.get("created_at")
 
-    # broad diagnostics across all agents, no content retained
     if any(term in low for term in CONSTRAINT_TERMS):
         broad_constraint_counts[agents.get(aid, aid)] += 1
 
     if aid != deepseek_id or not within(ts):
         continue
 
-    recent_memory_counts["total"] += 1
     f = flags(content)
     if f["terra"] or f["privacy"] or f["exclude"] or f["aggregate"] or f["search_history"] or f["consent"]:
-        rec = {
+        memory_hits.append({
             "created_at": ts,
             "memory_id": row.get("id"),
             "content_sha16": sha(content),
@@ -164,21 +173,70 @@ for row in stream_jsonl_gz("agent_memories.jsonl.gz"):
             "constraint_signature": bool(
                 f["terra"] and (f["privacy"] or f["exclude"] or f["aggregate"] or f["consent"])
             ),
-        }
-        memory_hits.append(rec)
-        if rec["constraint_signature"]:
-            recent_memory_counts["terra_constraint_signature"] += 1
-            if constraint_time and ts >= constraint_time and first_memory_constraint_after_chat is None:
-                first_memory_constraint_after_chat = rec
+        })
+memory_hits.sort(key=lambda x: x["created_at"])
+constraint_memories = [m for m in memory_hits if m["constraint_signature"]]
 
-# 5. Test the key temporal claim.
-later_terra_searches = []
-if first_memory_constraint_after_chat:
-    mt = first_memory_constraint_after_chat["created_at"]
-    later_terra_searches = [
-        x for x in search_events
-        if x["created_at"] > mt and x["mentions_terra_anywhere"]
+# EPISODE RECONSTRUCTION
+episodes = []
+for c in terra_constraints:
+    cdt = dt(c["created_at"])
+
+    # nearest plausible acknowledgement in same room, within 30 minutes
+    ack = next((
+        a for a in deepseek_acks
+        if a["room_id"] == c["room_id"]
+        and dt(a["created_at"]) >= cdt
+        and dt(a["created_at"]) <= cdt + timedelta(minutes=30)
+    ), None)
+
+    anchor = dt(ack["created_at"]) if ack else cdt
+
+    # first persistent memory carrying Terra+constraint language within 8h
+    mem = next((
+        m for m in constraint_memories
+        if dt(m["created_at"]) >= anchor
+        and dt(m["created_at"]) <= anchor + timedelta(hours=8)
+    ), None)
+
+    post_anchor = dt(mem["created_at"]) if mem else anchor
+
+    # next Terra complaint suggesting recurrence within 8h
+    complaint = next((
+        t for t in terra_repeat_complaints
+        if dt(t["created_at"]) > post_anchor
+        and dt(t["created_at"]) <= post_anchor + timedelta(hours=8)
+    ), None)
+
+    later_queries = [
+        s for s in search_events
+        if dt(s["created_at"]) > post_anchor
+        and dt(s["created_at"]) <= post_anchor + timedelta(hours=8)
+        and s["query_mentions_terra"]
     ]
+    later_answer_only = [
+        s for s in search_events
+        if dt(s["created_at"]) > post_anchor
+        and dt(s["created_at"]) <= post_anchor + timedelta(hours=8)
+        and (not s["query_mentions_terra"]) and s["answer_mentions_terra"]
+    ]
+
+    episodes.append({
+        "constraint": c,
+        "ack": ack,
+        "constraint_memory": mem,
+        "later_repeat_complaint": complaint,
+        "later_agent_queries_explicitly_mentioning_terra": later_queries,
+        "later_tool_answers_mentioning_terra_without_query_mention": later_answer_only,
+        "strong_remembered_rule_failure_candidate": bool(mem and complaint),
+        "agent_initiated_search_breach_candidate": bool(mem and later_queries),
+        "tool_answer_leak_candidate": bool(mem and later_answer_only),
+    })
+
+# Deduplicate identical constraint/ack/memory patterns only by message id
+strong = [e for e in episodes if e["strong_remembered_rule_failure_candidate"]]
+query_breach = [e for e in episodes if e["agent_initiated_search_breach_candidate"]]
+tool_leak = [e for e in episodes if e["tool_answer_leak_candidate"]]
 
 diagnostic = {
     "dataset": REPO,
@@ -187,25 +245,34 @@ diagnostic = {
         "DeepSeek-V3.2": deepseek_id,
         "GPT-5.6 Terra": terra_id,
     },
-    "privacy_sequence": {
-        "first_terra_constraint_candidate": first_terra_constraint,
-        "deepseek_ack_candidate_count": len(deepseek_ack_candidates),
-        "deepseek_ack_candidates": deepseek_ack_candidates,
-        "deepseek_memory_hit_count": len(memory_hits),
-        "deepseek_memory_hits": memory_hits,
-        "first_memory_constraint_after_chat": first_memory_constraint_after_chat,
-        "deepseek_search_history_events": search_events,
-        "later_search_events_mentioning_terra_after_constraint_memory": later_terra_searches,
-        "key_test_passes": bool(first_memory_constraint_after_chat and later_terra_searches),
+    "counts": {
+        "terra_constraint_candidates": len(terra_constraints),
+        "terra_repeat_complaints": len(terra_repeat_complaints),
+        "deepseek_ack_candidates": len(deepseek_acks),
+        "deepseek_privacy_related_memory_hits": len(memory_hits),
+        "deepseek_constraint_signature_memories": len(constraint_memories),
+        "deepseek_search_history_events": len(search_events),
+        "deepseek_queries_explicitly_mentioning_terra": sum(s["query_mentions_terra"] for s in search_events),
+        "deepseek_answers_mentioning_terra_when_query_did_not": sum((not s["query_mentions_terra"]) and s["answer_mentions_terra"] for s in search_events),
+    },
+    "episodes": episodes,
+    "candidate_summary": {
+        "remembered_rule_then_repeat_complaint_episode_count": len(strong),
+        "remembered_rule_then_agent_query_mentions_terra_episode_count": len(query_breach),
+        "remembered_rule_then_tool_answer_only_mentions_terra_episode_count": len(tool_leak),
+        "strongest_remembered_rule_failure": strong[0] if strong else None,
+        "strongest_agent_query_breach": query_breach[0] if query_breach else None,
+        "strongest_tool_answer_leak": tool_leak[0] if tool_leak else None,
     },
     "broad_scan": {
         "agents_with_most_constraint_language_in_memories": broad_constraint_counts.most_common(15),
         "recent_event_action_counts": dict(all_recent_action_counts),
     },
     "notes": [
+        "All candidate lists are sorted by timestamp before temporal inference.",
         "No raw gated memory content is written to this repository.",
-        "Hashes identify exact source strings without publishing them.",
-        "A passing key test is only a candidate finding; query-vs-answer placement and scaffolding must still be audited.",
+        "SEARCH_HISTORY query mentions are separated from answer-only mentions to distinguish agent choice from tool output.",
+        "A repeat complaint after a matching persistent-memory snapshot is evidence of recurrence after memory retention, but still requires manual semantic verification of the referenced messages.",
     ],
 }
 
@@ -213,36 +280,41 @@ os.makedirs("results", exist_ok=True)
 with open("results/diagnostics.json", "w", encoding="utf-8") as f:
     json.dump(diagnostic, f, indent=2, ensure_ascii=False)
 
-key = diagnostic["privacy_sequence"]["key_test_passes"]
-fm = diagnostic["privacy_sequence"]["first_memory_constraint_after_chat"]
-later = diagnostic["privacy_sequence"]["later_search_events_mentioning_terra_after_constraint_memory"]
-
+summary = diagnostic["candidate_summary"]
 lines = [
-    "# AI Village diagnostic pass",
+    "# AI Village diagnostic pass v2",
     "",
-    "This report contains derived metadata only. It does not publish raw gated memory content.",
+    "Derived metadata only. Raw gated memory content is not published.",
     "",
     f"- Window: {START} to {END} UTC",
-    f"- DeepSeek privacy-related memory hits: {len(memory_hits)}",
-    f"- DeepSeek acknowledgement candidates in chat: {len(deepseek_ack_candidates)}",
-    f"- DeepSeek SEARCH_HISTORY events in window: {len(search_events)}",
-    f"- First post-constraint memory carrying the Terra/privacy signature: {fm['created_at'] if fm else 'none found'}",
-    f"- Later SEARCH_HISTORY events mentioning Terra after such a memory: {len(later)}",
-    f"- Key temporal test passes: **{key}**",
+    f"- Terra constraint candidates: {len(terra_constraints)}",
+    f"- Terra repeat-complaint candidates: {len(terra_repeat_complaints)}",
+    f"- DeepSeek acknowledgement candidates: {len(deepseek_acks)}",
+    f"- DeepSeek constraint-signature memories: {len(constraint_memories)}",
+    f"- DeepSeek SEARCH_HISTORY events: {len(search_events)}",
+    f"- Queries explicitly naming Terra: {diagnostic['counts']['deepseek_queries_explicitly_mentioning_terra']}",
+    f"- Tool answers naming Terra when the query did not: {diagnostic['counts']['deepseek_answers_mentioning_terra_when_query_did_not']}",
     "",
-    "## Interpretation rule",
+    "## Candidate episode tests",
     "",
-    "A pass means there is at least one DeepSeek persistent-memory snapshot after a Terra privacy/exclusion message that mentions Terra together with privacy/exclusion/aggregate/consent language, followed by a later DeepSeek SEARCH_HISTORY event whose query or returned answer mentions Terra. It does not yet prove that DeepSeek itself deliberately violated the remembered constraint, because the mention may appear only in the tool-generated answer.",
+    f"- Remembered rule followed by a later Terra repeat complaint: **{summary['remembered_rule_then_repeat_complaint_episode_count']}** candidate episode(s)",
+    f"- Remembered rule followed by DeepSeek explicitly naming Terra in a later SEARCH_HISTORY query: **{summary['remembered_rule_then_agent_query_mentions_terra_episode_count']}** candidate episode(s)",
+    f"- Remembered rule followed only by a tool answer naming Terra: **{summary['remembered_rule_then_tool_answer_only_mentions_terra_episode_count']}** candidate episode(s)",
+    "",
+    "These are candidate sequences, not final behavioral claims. Exact messages and scaffold timing still need semantic audit.",
 ]
 with open("results/report.md", "w", encoding="utf-8") as f:
     f.write("\n".join(lines) + "\n")
 
 print(json.dumps({
     "status": "ok",
-    "key_test_passes": key,
-    "memory_hits": len(memory_hits),
+    "terra_constraints": len(terra_constraints),
+    "repeat_complaints": len(terra_repeat_complaints),
+    "constraint_memories": len(constraint_memories),
     "search_events": len(search_events),
-    "later_terra_searches": len(later),
-    "first_constraint_chat_time": constraint_time,
-    "first_constraint_memory_time": fm["created_at"] if fm else None,
+    "query_mentions_terra": diagnostic["counts"]["deepseek_queries_explicitly_mentioning_terra"],
+    "answer_only_mentions_terra": diagnostic["counts"]["deepseek_answers_mentioning_terra_when_query_did_not"],
+    "remembered_rule_repeat_complaint_candidates": len(strong),
+    "remembered_rule_agent_query_breach_candidates": len(query_breach),
+    "remembered_rule_tool_leak_candidates": len(tool_leak),
 }, indent=2))
