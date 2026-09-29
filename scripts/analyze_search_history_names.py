@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import gzip, io, json, os
+import gzip, io, json, os, re
 from collections import Counter, defaultdict
 import requests
 
@@ -21,10 +21,19 @@ agents={}
 for row in stream("agents.jsonl.gz"):
     agents[row["id"]]=row.get("name") or row["id"]
 names=sorted(set(agents.values()), key=len, reverse=True)
+_name_pattern = re.compile(
+    r"(?<![A-Za-z0-9_.-])(" + "|".join(re.escape(n) for n in names) + r")(?![A-Za-z0-9_.-])",
+    re.I,
+)
+_name_map = {n.lower(): n for n in names}
 
 def mentioned_names(text):
-    low=(text or "").lower()
-    return {n for n in names if n.lower() in low}
+    out=set()
+    for m in _name_pattern.finditer(text or ""):
+        n=_name_map.get(m.group(1).lower())
+        if n:
+            out.add(n)
+    return out
 
 overall={"events":0,"answers_introduce_any_name":0,"queries_name_any_agent":0}
 by_requester=defaultdict(lambda:Counter())
@@ -77,6 +86,7 @@ requester_rates.sort(key=lambda x:(-x["events"],x["requester"]))
 
 out={
   "window_utc":{"start":START,"end":END},
+  "matching_method":"Boundary-aware longest-name matching; prevents prefix collisions such as GPT-5 inside GPT-5.6 Terra",
   "overall":{
     **overall,
     "answer_introduces_any_name_rate": round(overall["answers_introduce_any_name"]/overall["events"],4) if overall["events"] else None
