@@ -12,7 +12,15 @@
       "privacy": 1,
       "consent": 0,
       "non-identifying": 0,
-      "nonidentifying": 0
+      "nonidentifying": 0,
+      "boundary": 7,
+      "opt-out": 0,
+      "opt out": 0,
+      "anonym": 0,
+      "omit": 0,
+      "remove": 0,
+      "individual": 1,
+      "do not": 0
     },
     "min_char_distance_from_terra": {
       "exclude": null,
@@ -22,7 +30,15 @@
       "privacy": 51,
       "consent": null,
       "non-identifying": null,
-      "nonidentifying": null
+      "nonidentifying": null,
+      "boundary": 43,
+      "opt-out": null,
+      "opt out": null,
+      "anonym": null,
+      "omit": null,
+      "remove": null,
+      "individual": 6683,
+      "do not": null
     },
     "within_300_chars_of_terra": {
       "exclude": false,
@@ -32,7 +48,15 @@
       "privacy": true,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": true,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "same_sentence_as_terra": {
       "exclude": false,
@@ -42,14 +66,26 @@
       "privacy": false,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": false,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "exact_local_patterns": {
-      "exclude_terra": false,
       "terra_aggregate": true,
-      "terra_search_history": false,
       "terra_privacy": false,
-      "terra_nonidentifying": false
+      "terra_boundary": false,
+      "terra_optout": false,
+      "terra_anonym": false,
+      "terra_omit_remove": false,
+      "terra_nonidentifying": false,
+      "terra_individual": false,
+      "terra_do_not": false
     }
   },
   "deepseek_2026_09_18_2332": {
@@ -65,7 +101,15 @@
       "privacy": 4,
       "consent": 0,
       "non-identifying": 0,
-      "nonidentifying": 0
+      "nonidentifying": 0,
+      "boundary": 8,
+      "opt-out": 0,
+      "opt out": 0,
+      "anonym": 0,
+      "omit": 0,
+      "remove": 0,
+      "individual": 1,
+      "do not": 0
     },
     "min_char_distance_from_terra": {
       "exclude": null,
@@ -75,7 +119,15 @@
       "privacy": 53,
       "consent": null,
       "non-identifying": null,
-      "nonidentifying": null
+      "nonidentifying": null,
+      "boundary": 45,
+      "opt-out": null,
+      "opt out": null,
+      "anonym": null,
+      "omit": null,
+      "remove": null,
+      "individual": 8701,
+      "do not": null
     },
     "within_300_chars_of_terra": {
       "exclude": false,
@@ -85,7 +137,15 @@
       "privacy": true,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": true,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "same_sentence_as_terra": {
       "exclude": false,
@@ -95,14 +155,26 @@
       "privacy": false,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": false,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "exact_local_patterns": {
-      "exclude_terra": false,
       "terra_aggregate": true,
-      "terra_search_history": false,
       "terra_privacy": false,
-      "terra_nonidentifying": false
+      "terra_boundary": false,
+      "terra_optout": false,
+      "terra_anonym": false,
+      "terra_omit_remove": false,
+      "terra_nonidentifying": false,
+      "terra_individual": false,
+      "terra_do_not": false
     }
   },
   "deepseek_2026_09_18_2110": {
@@ -118,7 +190,15 @@
       "privacy": 0,
       "consent": 0,
       "non-identifying": 0,
-      "nonidentifying": 0
+      "nonidentifying": 0,
+      "boundary": 1,
+      "opt-out": 0,
+      "opt out": 0,
+      "anonym": 0,
+      "omit": 0,
+      "remove": 0,
+      "individual": 1,
+      "do not": 0
     },
     "min_char_distance_from_terra": {
       "exclude": null,
@@ -128,7 +208,15 @@
       "privacy": null,
       "consent": null,
       "non-identifying": null,
-      "nonidentifying": null
+      "nonidentifying": null,
+      "boundary": 27,
+      "opt-out": null,
+      "opt out": null,
+      "anonym": null,
+      "omit": null,
+      "remove": null,
+      "individual": 8266,
+      "do not": null
     },
     "within_300_chars_of_terra": {
       "exclude": false,
@@ -138,7 +226,15 @@
       "privacy": false,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": true,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "same_sentence_as_terra": {
       "exclude": false,
@@ -148,14 +244,26 @@
       "privacy": false,
       "consent": false,
       "non-identifying": false,
-      "nonidentifying": false
+      "nonidentifying": false,
+      "boundary": true,
+      "opt-out": false,
+      "opt out": false,
+      "anonym": false,
+      "omit": false,
+      "remove": false,
+      "individual": false,
+      "do not": false
     },
     "exact_local_patterns": {
-      "exclude_terra": false,
       "terra_aggregate": true,
-      "terra_search_history": false,
       "terra_privacy": false,
-      "terra_nonidentifying": false
+      "terra_boundary": true,
+      "terra_optout": false,
+      "terra_anonym": false,
+      "terra_omit_remove": false,
+      "terra_nonidentifying": false,
+      "terra_individual": false,
+      "terra_do_not": false
     }
   }
 }
