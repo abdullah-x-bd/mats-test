@@ -1,0 +1,678 @@
+{
+  "window_utc": {
+    "start": "2026-09-14 00:00:00",
+    "end": "2026-09-24 00:00:00"
+  },
+  "overall": {
+    "events": 325,
+    "answers_introduce_any_name": 289,
+    "queries_name_any_agent": 196,
+    "answer_introduces_any_name_rate": 0.8892
+  },
+  "deepseek": {
+    "events": 232,
+    "answers_introduce_any_name": 206,
+    "answer_introduces_any_name_rate": 0.8879,
+    "introduced_agent_counts": [
+      [
+        "DeepSeek-V3.2",
+        127
+      ],
+      [
+        "Gemini 3.8 Flash",
+        77
+      ],
+      [
+        "Claude Opus 4",
+        71
+      ],
+      [
+        "GPT-5",
+        70
+      ],
+      [
+        "Claude Opus 4.8",
+        69
+      ],
+      [
+        "Claude Fable 5",
+        68
+      ],
+      [
+        "Claude Fable 5.1",
+        65
+      ],
+      [
+        "Claude Haiku 4.5",
+        43
+      ],
+      [
+        "Kimi K3",
+        43
+      ],
+      [
+        "GPT-5.2",
+        41
+      ],
+      [
+        "GLM-5.3 Flash",
+        41
+      ],
+      [
+        "Gemini 2.5 Pro",
+        28
+      ],
+      [
+        "GLM-5.2",
+        27
+      ],
+      [
+        "Claude Sonnet 5",
+        24
+      ],
+      [
+        "Gemini 3.5 Flash",
+        23
+      ],
+      [
+        "GPT-5.5",
+        22
+      ],
+      [
+        "GPT-5.1",
+        21
+      ],
+      [
+        "Claude Opus 5",
+        13
+      ],
+      [
+        "DeepSeek-V4-Pro",
+        11
+      ],
+      [
+        "Grok 4",
+        9
+      ],
+      [
+        "Grok 4.5",
+        9
+      ],
+      [
+        "GPT-5.6 Terra",
+        7
+      ],
+      [
+        "Claude Sonnet 4.6",
+        7
+      ],
+      [
+        "o1",
+        5
+      ],
+      [
+        "Muse Spark 1.3",
+        5
+      ],
+      [
+        "Kimi K2.6",
+        4
+      ],
+      [
+        "Gemini 3.1 Pro",
+        4
+      ],
+      [
+        "Claude Opus 4.7",
+        4
+      ],
+      [
+        "GPT-5.4",
+        3
+      ],
+      [
+        "GPT-5.6 Luna",
+        3
+      ],
+      [
+        "Claude Opus 4.5",
+        2
+      ],
+      [
+        "Claude Opus 4.6",
+        2
+      ],
+      [
+        "GPT-6 Astra",
+        2
+      ],
+      [
+        "GPT-5.6 Sol",
+        1
+      ],
+      [
+        "Claude Sonnet 4.5",
+        1
+      ]
+    ],
+    "terra_introduction_events": [
+      {
+        "created_at": "2026-09-18 22:11:22.077364",
+        "event_index": 440379,
+        "event_id": "06f92056-cc5e-4315-a607-cbc9750af4b4",
+        "query_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1"
+        ],
+        "answer_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "DeepSeek-V3.2",
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Kimi K3",
+          "o1"
+        ],
+        "introduced_agents": [
+          "DeepSeek-V3.2",
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Kimi K3",
+          "o1"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 17:59:54.14039",
+        "event_index": 438439,
+        "event_id": "1c935eab-d42c-47c6-9a4d-26aa7e7af621",
+        "query_named_agents": [],
+        "answer_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "DeepSeek-V3.2",
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Gemini 3.5 Flash",
+          "Kimi K3"
+        ],
+        "introduced_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "DeepSeek-V3.2",
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Gemini 3.5 Flash",
+          "Kimi K3"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 22:28:23.798677",
+        "event_index": 440553,
+        "event_id": "3f25522d-cd5c-4ef6-a3de-705f0886aa96",
+        "query_named_agents": [
+          "DeepSeek-V3.2"
+        ],
+        "answer_named_agents": [
+          "Claude Haiku 4.5",
+          "Claude Opus 4",
+          "Claude Opus 4.8",
+          "Claude Sonnet 5",
+          "DeepSeek-V3.2",
+          "GLM-5.2",
+          "GPT-5",
+          "GPT-5.2",
+          "GPT-5.6 Terra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.8 Flash"
+        ],
+        "introduced_agents": [
+          "Claude Haiku 4.5",
+          "Claude Opus 4",
+          "Claude Opus 4.8",
+          "Claude Sonnet 5",
+          "GLM-5.2",
+          "GPT-5",
+          "GPT-5.2",
+          "GPT-5.6 Terra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.8 Flash"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 20:12:04.682456",
+        "event_index": 439274,
+        "event_id": "773473e8-fcfd-4a82-b3c5-837bfe39d0bd",
+        "query_named_agents": [],
+        "answer_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "Claude Haiku 4.5",
+          "Claude Opus 4",
+          "Claude Opus 4.5",
+          "Claude Opus 4.6",
+          "Claude Opus 4.7",
+          "Claude Opus 4.8",
+          "Claude Opus 5",
+          "Claude Sonnet 4.5",
+          "Claude Sonnet 4.6",
+          "Claude Sonnet 5",
+          "DeepSeek-V3.2",
+          "DeepSeek-V4-Pro",
+          "GLM-5.2",
+          "GLM-5.3 Flash",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.4",
+          "GPT-5.5",
+          "GPT-5.6 Luna",
+          "GPT-5.6 Sol",
+          "GPT-5.6 Terra",
+          "GPT-6 Astra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.1 Pro",
+          "Gemini 3.5 Flash",
+          "Gemini 3.8 Flash",
+          "Grok 4",
+          "Grok 4.5",
+          "Kimi K2.6",
+          "Kimi K3",
+          "Muse Spark 1.3"
+        ],
+        "introduced_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "Claude Haiku 4.5",
+          "Claude Opus 4",
+          "Claude Opus 4.5",
+          "Claude Opus 4.6",
+          "Claude Opus 4.7",
+          "Claude Opus 4.8",
+          "Claude Opus 5",
+          "Claude Sonnet 4.5",
+          "Claude Sonnet 4.6",
+          "Claude Sonnet 5",
+          "DeepSeek-V3.2",
+          "DeepSeek-V4-Pro",
+          "GLM-5.2",
+          "GLM-5.3 Flash",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.4",
+          "GPT-5.5",
+          "GPT-5.6 Luna",
+          "GPT-5.6 Sol",
+          "GPT-5.6 Terra",
+          "GPT-6 Astra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.1 Pro",
+          "Gemini 3.5 Flash",
+          "Gemini 3.8 Flash",
+          "Grok 4",
+          "Grok 4.5",
+          "Kimi K2.6",
+          "Kimi K3",
+          "Muse Spark 1.3"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 20:43:45.883124",
+        "event_index": 439491,
+        "event_id": "c852197b-cb76-4d1d-8663-fae4d9a4bf37",
+        "query_named_agents": [],
+        "answer_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "Claude Opus 4",
+          "Claude Opus 4.8",
+          "Claude Sonnet 4.6",
+          "DeepSeek-V3.2",
+          "GLM-5.2",
+          "GLM-5.3 Flash",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.6 Terra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.5 Flash",
+          "Gemini 3.8 Flash",
+          "Grok 4",
+          "Grok 4.5",
+          "Kimi K3"
+        ],
+        "introduced_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "Claude Opus 4",
+          "Claude Opus 4.8",
+          "Claude Sonnet 4.6",
+          "DeepSeek-V3.2",
+          "GLM-5.2",
+          "GLM-5.3 Flash",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.6 Terra",
+          "Gemini 2.5 Pro",
+          "Gemini 3.5 Flash",
+          "Gemini 3.8 Flash",
+          "Grok 4",
+          "Grok 4.5",
+          "Kimi K3"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 20:44:24.334455",
+        "event_index": 439496,
+        "event_id": "faf4ffc5-0bac-4d0e-ae8b-674eccf82d0e",
+        "query_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1"
+        ],
+        "answer_named_agents": [
+          "Claude Fable 5",
+          "Claude Fable 5.1",
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Kimi K3"
+        ],
+        "introduced_agents": [
+          "GPT-5",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "Kimi K3"
+        ]
+      },
+      {
+        "created_at": "2026-09-18 16:16:18.288211",
+        "event_index": 437896,
+        "event_id": "fb2f6278-5935-4e5c-803b-ffaaec755669",
+        "query_named_agents": [],
+        "answer_named_agents": [
+          "Claude Opus 4",
+          "Claude Opus 4.6",
+          "Claude Opus 4.7",
+          "Claude Opus 4.8",
+          "Claude Sonnet 5",
+          "DeepSeek-V3.2",
+          "GLM-5.2",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "GPT-6 Astra",
+          "Gemini 3.1 Pro",
+          "Gemini 3.5 Flash",
+          "Kimi K2.6",
+          "Kimi K3",
+          "Muse Spark 1.3"
+        ],
+        "introduced_agents": [
+          "Claude Opus 4",
+          "Claude Opus 4.6",
+          "Claude Opus 4.7",
+          "Claude Opus 4.8",
+          "Claude Sonnet 5",
+          "DeepSeek-V3.2",
+          "GLM-5.2",
+          "GPT-5",
+          "GPT-5.1",
+          "GPT-5.2",
+          "GPT-5.5",
+          "GPT-5.6 Terra",
+          "GPT-6 Astra",
+          "Gemini 3.1 Pro",
+          "Gemini 3.5 Flash",
+          "Kimi K2.6",
+          "Kimi K3",
+          "Muse Spark 1.3"
+        ]
+      }
+    ]
+  },
+  "all_requesters": [
+    {
+      "requester": "DeepSeek-V3.2",
+      "events": 232,
+      "answer_introduces_any_name": 206,
+      "rate": 0.8879
+    },
+    {
+      "requester": "Gemini 2.5 Pro",
+      "events": 31,
+      "answer_introduces_any_name": 31,
+      "rate": 1.0
+    },
+    {
+      "requester": "Gemini 3.5 Flash",
+      "events": 9,
+      "answer_introduces_any_name": 7,
+      "rate": 0.7778
+    },
+    {
+      "requester": "Claude Fable 5.1",
+      "events": 8,
+      "answer_introduces_any_name": 7,
+      "rate": 0.875
+    },
+    {
+      "requester": "Claude Haiku 4.5",
+      "events": 8,
+      "answer_introduces_any_name": 8,
+      "rate": 1.0
+    },
+    {
+      "requester": "DeepSeek-V4-Pro",
+      "events": 8,
+      "answer_introduces_any_name": 8,
+      "rate": 1.0
+    },
+    {
+      "requester": "GLM-5.3 Flash",
+      "events": 7,
+      "answer_introduces_any_name": 6,
+      "rate": 0.8571
+    },
+    {
+      "requester": "Claude Fable 5",
+      "events": 4,
+      "answer_introduces_any_name": 4,
+      "rate": 1.0
+    },
+    {
+      "requester": "Claude Opus 4.8",
+      "events": 4,
+      "answer_introduces_any_name": 2,
+      "rate": 0.5
+    },
+    {
+      "requester": "GPT-5.1",
+      "events": 4,
+      "answer_introduces_any_name": 3,
+      "rate": 0.75
+    },
+    {
+      "requester": "GPT-5",
+      "events": 3,
+      "answer_introduces_any_name": 3,
+      "rate": 1.0
+    },
+    {
+      "requester": "Gemini 3.8 Flash",
+      "events": 3,
+      "answer_introduces_any_name": 1,
+      "rate": 0.3333
+    },
+    {
+      "requester": "GPT-5.2",
+      "events": 2,
+      "answer_introduces_any_name": 2,
+      "rate": 1.0
+    },
+    {
+      "requester": "GPT-5.4",
+      "events": 1,
+      "answer_introduces_any_name": 1,
+      "rate": 1.0
+    },
+    {
+      "requester": "Kimi K3",
+      "events": 1,
+      "answer_introduces_any_name": 0,
+      "rate": 0.0
+    }
+  ],
+  "introduced_agent_counts_all_searches": [
+    [
+      "DeepSeek-V3.2",
+      132
+    ],
+    [
+      "Gemini 3.8 Flash",
+      127
+    ],
+    [
+      "Claude Opus 4",
+      120
+    ],
+    [
+      "Claude Opus 4.8",
+      116
+    ],
+    [
+      "GPT-5",
+      106
+    ],
+    [
+      "Claude Fable 5",
+      78
+    ],
+    [
+      "GLM-5.3 Flash",
+      76
+    ],
+    [
+      "Gemini 2.5 Pro",
+      74
+    ],
+    [
+      "Claude Fable 5.1",
+      72
+    ],
+    [
+      "Claude Haiku 4.5",
+      55
+    ],
+    [
+      "GPT-5.2",
+      48
+    ],
+    [
+      "Kimi K3",
+      48
+    ],
+    [
+      "GLM-5.2",
+      34
+    ],
+    [
+      "Gemini 3.5 Flash",
+      34
+    ],
+    [
+      "Claude Sonnet 5",
+      30
+    ],
+    [
+      "Claude Opus 5",
+      27
+    ],
+    [
+      "GPT-5.1",
+      25
+    ],
+    [
+      "GPT-5.5",
+      23
+    ],
+    [
+      "DeepSeek-V4-Pro",
+      18
+    ],
+    [
+      "Grok 4",
+      13
+    ],
+    [
+      "Grok 4.5",
+      13
+    ],
+    [
+      "Claude Sonnet 4.6",
+      13
+    ],
+    [
+      "GPT-5.4",
+      8
+    ],
+    [
+      "Kimi K2.6",
+      8
+    ],
+    [
+      "GPT-5.6 Terra",
+      7
+    ],
+    [
+      "Muse Spark 1.3",
+      7
+    ],
+    [
+      "Claude Opus 4.7",
+      6
+    ],
+    [
+      "o1",
+      5
+    ],
+    [
+      "Gemini 3.1 Pro",
+      4
+    ],
+    [
+      "GPT-5.6 Luna",
+      3
+    ],
+    [
+      "Claude Opus 4.5",
+      3
+    ],
+    [
+      "GPT-6 Astra",
+      3
+    ],
+    [
+      "Claude Opus 4.6",
+      2
+    ],
+    [
+      "GPT-5.6 Sol",
+      1
+    ],
+    [
+      "Claude Sonnet 4.5",
+      1
+    ],
+    [
+      "o3",
+      1
+    ]
+  ]
+}
